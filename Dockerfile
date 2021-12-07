@@ -8,5 +8,5 @@ COPY . .
 
 RUN python -m pip install -r requirements.txt
 
-RUN chmod u+x ./migrate_db
-ENTRYPOINT ["./migrate_db"]
+RUN chmod u+x ./run
+ENTRYPOINT ["./run"]

@@ -20,7 +20,7 @@ The site has a manager and can have multiple assets.
 
 You're now up to start the application.
 ##### Using docker
-You can also install `docker` on your system to run the app in a docker container.
+You can also install `docker` on your system to run the app within a docker container.
 
 ## Features
 
@@ -47,11 +47,14 @@ Your server will listen on http://127.0.0.1:9000
 in the same folder `metron-ta` launch the command :
 
 ```
-python -m pytest
+python -m pytest --setup-show
 ```
 ##### Using docker
 
-Not working as expected
+To launch to unit tests simply run :
+```
+docker exec metron_api python -m pytest --setup-show
+```
 
 ### Test with POSTMAN
 
@@ -62,4 +65,3 @@ You can use the postman collection `METRON_API_COLLECTION.postman_collection.jso
 - [ ] Add more tests case
 - [ ] Add logout
 - [ ] Add token blacklist
-- [ ] Debug docker for tests
