@@ -1,3 +1,0 @@
-#!/bin/bash
-flask db migrate -d app/database/migrations/
-flask db upgrade -d app/database/migrations/

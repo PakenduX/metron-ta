@@ -63,7 +63,6 @@ def delete_manager(uid):
         service.delete_manager_by_uid(uid=uid)
         return success_response(message="Votre compte a été supprimé avec succès")
     except Exception as e:
-        print(e)
         return unknown_error()
 
 

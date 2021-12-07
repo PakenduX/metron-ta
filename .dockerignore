@@ -1,0 +1,7 @@
+*__pycache__
+venv
+.pytest_cache/
+.vscode
+.git
+METRON_API_COLLECTION.postman_collection.json
+METRON_API_ENV.postman_environment.json
