@@ -29,7 +29,7 @@ def register():
         ManagerSchema().load(data)
 
         managerService.create_manager(
-            uid=uuid.uuid4(),
+            uid=str(uuid.uuid4()),
             name=data["name"],
             email=data["email"],
             password=hash_password(data["password"]),
@@ -69,5 +69,4 @@ def login():
     except Exception as e:
         if isinstance(e, VerifyMismatchError):
             return unauthorized_error("Votre mot de passe est incorrect")
-        print(e)
         return unknown_error()

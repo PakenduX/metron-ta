@@ -1,0 +1,512 @@
+{
+	"info": {
+		"_postman_id": "90b2d782-0295-4889-8bfd-1fd1950d0f25",
+		"name": "METRON API COLLECTION",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get Managers",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{API_CORE}}/managers",
+					"host": [
+						"{{API_CORE}}"
+					],
+					"path": [
+						"managers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add a new manager",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Metron\",\n    \"email\": \"manager@metron.com\",\n    \"password\": \"1234567\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_CORE}}/auth/register",
+					"host": [
+						"{{API_CORE}}"
+					],
+					"path": [
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sigin in a manager",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const response = pm.response.json()",
+							"if(response.status === 'success'){",
+							"    pm.environment.set('access_token', response.data.access_token)",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"password\": \"1234567\",\n    \"email\": \"manager@metron.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_CORE}}/auth/login",
+					"host": [
+						"{{API_CORE}}"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a Manager by email",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{API_CORE}}/managers/manager@metron.com",
+					"host": [
+						"{{API_CORE}}"
+					],
+					"path": [
+						"managers",
+						"manager@metron.com"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete manager by uid",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{API_CORE}}/managers/c23515e5-02ac-4135-84b2-e8c2e0e72cba",
+					"host": [
+						"{{API_CORE}}"
+					],
+					"path": [
+						"managers",
+						"c23515e5-02ac-4135-84b2-e8c2e0e72cba"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a manager's sites",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{API_CORE}}/managers/bogoss@metron.com/sites",
+					"host": [
+						"{{API_CORE}}"
+					],
+					"path": [
+						"managers",
+						"bogoss@metron.com",
+						"sites"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add a new Site",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Metron Lab\",\n    \"max_power\": 1000,\n    \"address\": \"2 rue montmartre, 75002 Paris\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_CORE}}/sites/add",
+					"host": [
+						"{{API_CORE}}"
+					],
+					"path": [
+						"sites",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a site by uid",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{API_CORE}}/sites/c23515e5-02ac-4135-84b2-e8c2e0e72cba",
+					"host": [
+						"{{API_CORE}}"
+					],
+					"path": [
+						"sites",
+						"c23515e5-02ac-4135-84b2-e8c2e0e72cba"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all the sites",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{API_CORE}}/sites",
+					"host": [
+						"{{API_CORE}}"
+					],
+					"path": [
+						"sites"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Site by uid",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{API_CORE}}/sites/275a4bfe-e84a-4bc7-9c59-2e5bbedd7350",
+					"host": [
+						"{{API_CORE}}"
+					],
+					"path": [
+						"sites",
+						"275a4bfe-e84a-4bc7-9c59-2e5bbedd7350"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update a site by uid",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Amadeus\",\n    \"address\": \"square du verdun, 06987 Sophia Antipolis\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_CORE}}/sites/fee8439f-3c6f-4d60-9bc8-fcd87b7cc155",
+					"host": [
+						"{{API_CORE}}"
+					],
+					"path": [
+						"sites",
+						"fee8439f-3c6f-4d60-9bc8-fcd87b7cc155"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add a new Asset",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Automate qui va tout pété\",\n    \"asset_type\": \"Furnace\",\n    \"power\": 1000,\n    \"site_id\": \"cc232d8d-4349-41eb-93f4-cd238389508c\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_CORE}}/assets/add",
+					"host": [
+						"{{API_CORE}}"
+					],
+					"path": [
+						"assets",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all the assets",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{API_CORE}}/assets",
+					"host": [
+						"{{API_CORE}}"
+					],
+					"path": [
+						"assets"
+					],
+					"query": [
+						{
+							"key": "au",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a site's assets",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{API_CORE}}/sites/a5126c7f-b8a6-45b0-ac93-4a721a06ac05/assets",
+					"host": [
+						"{{API_CORE}}"
+					],
+					"path": [
+						"sites",
+						"a5126c7f-b8a6-45b0-ac93-4a721a06ac05",
+						"assets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update manager informations",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Bogoss\",\n    \"password\": \"7654321\",\n    \"email\": \"bogoss@metron.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_CORE}}/managers/0c949828-7ea0-4a18-bd7c-545c65645bb4",
+					"host": [
+						"{{API_CORE}}"
+					],
+					"path": [
+						"managers",
+						"0c949828-7ea0-4a18-bd7c-545c65645bb4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a Asset by uid",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{API_CORE}}/assets/a6dcfcb4-3a38-4847-8205-b9b2c7901a62",
+					"host": [
+						"{{API_CORE}}"
+					],
+					"path": [
+						"assets",
+						"a6dcfcb4-3a38-4847-8205-b9b2c7901a62"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete an asset by uid",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{API_CORE}}/assets/a6dcfcb4-3a38-4847-8205-b9b2c7901a62",
+					"host": [
+						"{{API_CORE}}"
+					],
+					"path": [
+						"assets",
+						"a6dcfcb4-3a38-4847-8205-b9b2c7901a62"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update an asset by uid",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Macbook Pro M1 14\",\n    \"asset_type\": \"Chiller\",\n    \"power\": 400\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_CORE}}/assets/e7b8d94e-907c-44f2-aaed-d1ae260c18f6",
+					"host": [
+						"{{API_CORE}}"
+					],
+					"path": [
+						"assets",
+						"e7b8d94e-907c-44f2-aaed-d1ae260c18f6"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

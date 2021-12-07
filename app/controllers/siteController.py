@@ -33,7 +33,7 @@ def add_site():
         if manager is None:
             return unauthorized_error()
         service.create_site(
-            uid=uuid.uuid4(),
+            uid=str(uuid.uuid4()),
             name=data["name"],
             address=data["address"],
             max_power=data["max_power"],

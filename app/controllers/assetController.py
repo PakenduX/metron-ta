@@ -46,7 +46,7 @@ def add_asset():
         if manager.uid != site.manager_id:
             return unauthorized_error()
         service.create_asset(
-            uid=uuid.uuid4(),
+            uid=str(uuid.uuid4()),
             name=data["name"],
             asset_type=data["asset_type"],
             power=data["power"],
@@ -54,7 +54,6 @@ def add_asset():
         )
         return created_response()
     except Exception as e:
-        print(e)
         if isinstance(e, ValidationError):
             return bad_request(e.messages)
         return unknown_error()
@@ -98,7 +97,7 @@ def get_asset_by_uid(uid):
             "power": asset.power,
         }
         return success_response(data=json_asset)
-    except:
+    except Exception as e:
         return unknown_error()
 
 
