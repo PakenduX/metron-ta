@@ -41,6 +41,10 @@ In your folder `metron-ta` simply run :
 ```
  docker-compose up --build
 ```
+
+If you get the error : `interfaceerror: lost connection to mysql server at 'handshake: reading initial communication`
+Run the command second time and everything will be okay.
+
 Your server will listen on http://127.0.0.1:9000
 ### Launch the tests
 ##### Using virtual environment
